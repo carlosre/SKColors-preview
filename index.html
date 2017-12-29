@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SkiaSharp.SKColors preview</title>
+    <meta name="description" content="A colors preview for Xamarin's SkiaSharp.SKColors">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+</head>
+<body class="bg-grey-lighter">
+    <div id="app" class="text-black text-center container mx-auto px-4 py-8">
+        <h1 class="break-words text-5xl mb-4">SkiaSharp.SKColors preview</h1>
+        <p class="mb-8">
+          <a class="break-words text-blue" href="https://developer.xamarin.com/api/type/SkiaSharp.SKColors/" target="_blank">https://developer.xamarin.com/api/type/SkiaSharp.SKColors/</a>
+        </p>
+        <label for="colorFilter"></label>
+        <input class="p-4 w-64 mb-8 mx-auto rounded-sm shadow border-none text-grey" id="colorFilter" name="colorFilter" type="text" placeholder="Start typing a color name..." v-model="colorFilter">
+        <div class="flex flex-wrap justify-center">
+          <div class="p-2" v-for="color in filteredColors">
+            <div class="bg-white rounded-sm shadow text-center w-32">
+                <a class="block w-32 h-32 border border-grey-lighter cursor-pointer" :style="htmlColor(color)" :title="color.Name" v-clipboard:copy="copyName(color.Name)" v-clipboard:success="onCopy"></a>
+                <a class="block p-2 cursor-pointer truncate" v-text="color.Name" :title="color.Name" v-clipboard:copy="copyName(color.Name)" v-clipboard:success="onCopy"></a>
+                <a class="block cursor-pointer pb-2 text-grey text-xs" v-text="color.Value" v-clipboard:copy="color.Value" v-clipboard:success="onCopy"></a>
+              </div>
+          </div>
+        </div>
+      </div>
+     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+     <script src="https://cdn.rawgit.com/Inndy/vue-clipboard2/master/dist/vue-clipboard.min.js"></script>
+     <script src="index.js"></script>
+</body>
+</html>
